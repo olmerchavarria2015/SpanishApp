@@ -1,6 +1,7 @@
 package com.example.adtjc.spanishapp;
 
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     TextView t1;
     TextView t2;
     Map <String ,String> traductor;
+    MediaPlayer EnTono;
+
 
 
 
@@ -35,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("myculo is fat");
         setSupportActionBar(toolbar);
         traductor= new HashMap <String ,String>();
-        traductor.put("corazon","heart");
+        traductor.put("corazon", "heart");
+
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -53,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public void SonidoPlay(View V){
+        EnTono = MediaPlayer.create(this,R.raw.bells);
+        EnTono.start();
+
+
+
+
+        //EnTono.release();
     }
     public void ButtonClicked(View v){
         traductor= new HashMap <String ,String>();
