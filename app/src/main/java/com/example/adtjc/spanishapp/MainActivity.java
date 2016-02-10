@@ -23,6 +23,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     TextView t1;
     TextView t2;
+    EditText n2;
     Map <String ,String> traductor;
     MediaPlayer EnTono;
 
@@ -35,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("myculo is fat");
+        toolbar.setTitle("Spanish Tutor");
         setSupportActionBar(toolbar);
         traductor= new HashMap <String ,String>();
-        traductor.put("corazon", "heart");
+
 
 
 
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
         t1 = (TextView)findViewById(R.id.textView);
         t1.setTypeface(CustomFont);
         t2 = (TextView)findViewById(R.id.textView2);
+        n2 = (EditText)findViewById(R.id.editText3);
+        traductor= new HashMap <String ,String>();
+        traductor.put("corazon","heart");
+        traductor.put("zapato", "shoe");
+        traductor.put("cama","bed");
 
 
 
@@ -69,35 +75,21 @@ public class MainActivity extends AppCompatActivity {
         //EnTono.release();
     }
     public void ButtonClicked(View v){
-        traductor= new HashMap <String ,String>();
-        traductor.put("corazon","heart");
-        traductor.put("zapato","shoe");
-        traductor.put("cama","bed");
-
-
-        EditText n2 = (EditText)findViewById(R.id.editText3);
-        String num2 = wordProcessor(n2.getText().toString());
+        String num2 = n2.getText().toString().trim();
         String count = String.valueOf(num2.length());
-        String ese = "s";
 
-        if (num2.substring(num2.length() - 1).equals(ese)
-                //||num2.substring((num2.length() - 2)+(num2.length() - 1)).equals(esos)
-                ){
-            String word= num2.replace(num2.substring(num2.length()- 1),"");
-            t1.setText(num2 +" = "+(traductor.get(word))+ese);
-            //t1.setText(num2);
-            t2.setText(count);
-
-        }
-        else{
-            t1.setText(num2 +" = "+traductor.get(num2));
-            //t1.setText(num2);
-
+        if (traductor.get(num2)!=null){
+            t1.setText(num2 +" = "+(traductor.get(num2)));
             t2.setText(count);
 
 
+        }
+        else {
+
+            t1.setText(num2 +" is not in database");
 
         }
+
     }
     public String wordProcessor(String str){
 
@@ -108,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
            }
 
         }
+
         return str;
     }
 
